@@ -19,8 +19,7 @@ export default function MsLearnMcpConnectPage() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      content:
-        'こんにちは！AIアシスタントです。何かお手伝いできることはありますか？',
+      content: 'Welcome to AI HandsOn MCP Connect! How can I assist you today?',
       sender: 'ai',
       timestamp: new Date(),
     },
@@ -39,21 +38,16 @@ export default function MsLearnMcpConnectPage() {
   }, [messages]);
 
   const simulateAIResponse = async (userMessage: string): Promise<string> => {
-    console.log('🚀 ~ simulateAIResponse ~ userMessage:', userMessage);
-    // Simulate AI thinking time
-    await new Promise((resolve) =>
-      setTimeout(resolve, 1000 + Math.random() * 2000)
-    );
+    const res = await fetch('/api/mcp', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ message: userMessage }),
+    });
 
-    const responses = [
-      'それは興味深い質問ですね。もう少し詳しく教えていただけますか？',
-      'そのトピックについて説明させていただきます。',
-      'とても良い質問です！一緒に考えてみましょう。',
-      'なるほど、その件についてお答えします。',
-      'ご質問ありがとうございます。詳しく回答いたします。',
-    ];
-
-    return responses[Math.floor(Math.random() * responses.length)];
+    const data = await res.json();
+    return data.reply ?? 'No reply. Sorry...';
   };
 
   const handleSendMessage = async () => {
@@ -117,10 +111,10 @@ export default function MsLearnMcpConnectPage() {
             </div>
             <div>
               <h1 className="font-semibold text-slate-900 dark:text-slate-100">
-                AIアシスタント
+                AI HandsOn MCP Connect
               </h1>
               <p className="text-sm text-slate-500 dark:text-slate-400">
-                オンライン
+                Online
               </p>
             </div>
           </div>
@@ -191,9 +185,9 @@ export default function MsLearnMcpConnectPage() {
                 </Avatar>
                 <Card className="p-4 bg-white dark:bg-slate-700 border-slate-200 dark:border-slate-600">
                   <div className="flex gap-1">
-                    <div className="h-2 w-2 bg-slate-400 rounded-full animate-bounce"></div>
-                    <div className="h-2 w-2 bg-slate-400 rounded-full animate-bounce [animation-delay:0.1s]"></div>
-                    <div className="h-2 w-2 bg-slate-400 rounded-full animate-bounce [animation-delay:0.2s]"></div>
+                    <div className="h-2 w-2 bg-blue-200 rounded-full animate-bounce"></div>
+                    <div className="h-2 w-2 bg-blue-400 rounded-full animate-bounce [animation-delay:0.1s]"></div>
+                    <div className="h-2 w-2 bg-blue-600 rounded-full animate-bounce [animation-delay:0.2s]"></div>
                   </div>
                 </Card>
               </div>

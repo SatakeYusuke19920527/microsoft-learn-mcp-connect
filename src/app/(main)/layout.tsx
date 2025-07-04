@@ -25,7 +25,7 @@ export default function DashboardLayout({
         </div>
       </header>
       {/* sidebar and main contents */}
-      <div className="md:grid md:grid-cols-[220px_minmax(0,1fr)_220px] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)_240px] lg:gap-0">
+      <div className="md:grid md:grid-cols-[220px_minmax(0,1fr)_220px] md:gap-6 lg:grid-cols-[2fr_8fr] lg:gap-10 lg:pr-10">
         {/* sidebar */}
         <aside className="fixed md:sticky top-16 z-30 hidden md:block border-r h-[calc(100vh-4.1rem)]">
           <div className="py-6 px-2 lg:py-8">
